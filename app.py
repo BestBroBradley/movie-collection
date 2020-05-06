@@ -6,18 +6,18 @@ def query_user():
     user_selection = input(menu)
     if user_selection == "a":
       add_movie()
-      get_selection()
+      query_user()
     elif user_selection == "l":
       print("see all")
-      get_selection()
+      query_user()
     elif user_selection == "s":
       print("search for a title")
-      get_selection()
+      query_user()
     elif user_selection == "q":
       print("Thank you for using our movie service")
     else:
       print("You must select a valid option.")
-      get_selection()
+      query_user()
 
 def get_gen_rating(new_title):
     genre = input(f"What genre is {new_title}? ")
@@ -31,19 +31,24 @@ def verify_title(new_title):
     elif verify_query == "n":
         add_movie()
     else:
-        print("You must type either 'y' or 'n'.)
+        print("You must type either 'y' or 'n'.")
         verify_title(new_title)
 
 def verify_gen_rating(new_title, genre, rating):
-    verify_final = input(f"Would you like to add {new_title} with a genre of {genre} and a rating of {rating} to your library?")
+    verify_final = input(f"Would you like to add {new_title} with a genre of {genre} and a rating of {rating}/10 to your library? (y/n) ")
+    if verify_final == "y":
+        user_library.append({"title": new_title, "genre": genre, "rating": rating + "/10"})
+        print(user_library)
+        query_user()
+    elif verify_final == "n":
+        get_gen_rating(new_title)
+    else:
+        print("You must type either 'y' or 'n'.")
+        verify_gen_rating(new_title, genre, rating)
 
 def add_movie():
     new_title = input("What is the title of the movie you would like to add? ")
     verify_title(new_title)
-
-def see_all():
-
-def search():
 
 query_user()
 
