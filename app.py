@@ -8,7 +8,7 @@ def query_user():
       add_movie()
       query_user()
     elif user_selection == "l":
-      print("see all")
+      view_all()
       query_user()
     elif user_selection == "s":
       print("search for a title")
@@ -49,6 +49,19 @@ def verify_gen_rating(new_title, genre, rating):
 def add_movie():
     new_title = input("What is the title of the movie you would like to add? ")
     verify_title(new_title)
+
+def view_all():
+    if len(user_library) > 0:
+        print("Your library:")
+        for movie in user_library:
+            title = movie["title"]
+            genre = movie["genre"]
+            rating = movie["rating"]
+            print(f"{title} | {genre} | {rating}")
+        query_user()
+    else:
+        print("There are no titles in your library.")
+        query_user()
 
 query_user()
 
